@@ -1,0 +1,98 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+#header {
+  background-color: #ffffff;
+  width: 100%;
+  height: 50px;
+  border-bottom: 3px solid #666666;
+
+  ul {
+    float: right;
+    position: relative;
+    margin: auto;
+    height: inherit;
+
+    li {
+      display: inline-block;
+      height: inherit;
+      width: 100px;
+      font-size: 20px;
+      font-family: Comic Sans MS;
+      background-color: #666666;
+      color: #ffffff;
+      float: inherit;
+      text-align: center;
+      line-height: 50px;
+      cursor: pointer;
+    }
+
+    li:hover {
+      background-color: #000000;
+    }
+
+  }
+
+  .home-page-link {
+    position: relative;
+    height: reletive;
+    line-height: 50px;
+    font-size: 25px;
+    font-family: Comic Sans MS;
+    cursor: pointer;
+    color: #000000;
+    text-decoration: none;
+  }
+
+  .home-page-link:hover {
+    color: #ffffff;
+  }
+}
+
+.about, .login {
+  display: none;
+  float: right;
+  width: 300px;
+  background-color: #ffffff;
+  color: #000000;
+  font-family: Comic Sans MS;
+  font-size: 15px;
+  border-bottom: 3px solid #666666;
+  top: 50px;
+}
+
+#main {
+  .notice {
+    position: relative;
+    margin: auto;
+    background-color: #730E15;
+    color: #ffffff;
+    width: 100%;
+  }
+
+  width: 50%;
+  margin: auto;
+  position: relative;
+}
+
+#footer {
+  background-color: #ffffff;
+  position: absolute;
+  width: 100%;
+  height: 20px;
+  top: 100%;
+  border-top: 3px solid #666666;
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ReqApp</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="<%= controller.controller_name %>">
+<div id="header">
+  <%= link_to 'Welcome to Request Trap tool.', admin_url, class: 'home-page-link'%>
+  <ul>
+    <li id="about-btn">About</li>
+    <% unless session[:user_id] %>
+        <%= link_to new_user_path do %>
+            <li id="sign-in-btn">Sign in</li>
+        <% end %>
+        <li id="login-btn">Log in</li>
+    <% end %>
+    <% if session[:user_id] %>
+        <%= link_to logout_path, method: :delete do %>
+            <li>Logout</li>
+        <% end %>
+        <%= link_to users_path do %>
+            <li>Users</li>
+        <% end %>
+        <%= link_to traps_url do %>
+            <li>Traps</li>
+        <% end %>
+    <% end %>
+  </ul>
+</div>
+<div class="about">
+  <p>   A tool for capture and display HTTP requests.
+  <p>This simple tool is useful during the development of apps that
+    integrate with external services, such as http clients, webhooks, etc.
+  <p>The Requests Trap app ('Req App') provides these services with
+    an endpoint to which they can send requests and notifications.
+</div>
+<div class="login">
+  <%= render template: 'sessions/new' %>
+</div>
+<div class="notice"><% notice %></div>
+<div id="main">
+  <%= yield %>
+</div>
+<div id="footer">
+</div>
+</body>
+</html>

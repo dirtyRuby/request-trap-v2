@@ -1,0 +1,27 @@
+<div class="table-title"><%= @request.trap.name %></div>
+<table class="listing-table">
+  <thead>
+  <tr>
+    <td>Parameter</td>
+    <td>Value</td>
+  </tr>
+  </thead>
+  <tbody>
+  <% @request.attributes.each do |value| %>
+      <tr>
+        <td><%= value[0].to_s.capitalize.gsub("_", " ") %></td>
+        <td>
+          <%= value[1] %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<div class="listing-manipulation">
+  <div>
+    <%= link_to 'Delete', requests_path(@request.trap.name, @request.id), method: :delete %>
+  </div>
+  <div>
+    <%= link_to 'Back', trap_path %>
+  </div>
+</div>

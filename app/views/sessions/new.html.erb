@@ -1,0 +1,16 @@
+<div class="notice"><% notice %></div>
+<%= form_tag do %>
+    <legend>
+      <div class="user-name">
+        <%= label_tag :user_name, 'User name' %>
+        <%= text_field_tag :user_name, params[:user_name]%>
+      </div>
+      <div class="password">
+        <%= label_tag :user_name, 'Password' %>
+        <%= password_field_tag :password, params[:password]%>
+      </div>
+      <div>
+        <%= submit_tag 'Log in' %>
+      </div>
+    </legend>
+<% end %>

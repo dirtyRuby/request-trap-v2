@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+<table class="listing-table">
+  <thead>
+  <tr>
+    <td> User name </td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><%= @user.user_name %></td>
+  </tr>
+  </tbody>
+</table>
+<div class="listing-manipulation">
+  <div><%= link_to 'Edit', edit_user_path(@user) %></div>
+  <div><%= link_to 'Back', users_path %></div>
+</div>
