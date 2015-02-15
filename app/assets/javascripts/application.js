@@ -15,22 +15,22 @@
 //= require turbolinks
 //= require_tree .
 
+
 $(document).ready(function(){
-    function slider (owningClass, submissiveClass){
-        $(owningClass).click(function(){
-            // If block invisible then make visible with slide down.
-            if ($(submissiveClass).css('display') == "none" ) {
-                $(submissiveClass).slideDown(500);
-            }
-            // If block visible then make invisible with slide up.
-            else {
-                $(submissiveClass).slideUp(500);
-            }
-        });
+    function slider(submissiveClass){
+        // If block invisible then make visible with slide down.
+        if ($(submissiveClass).css('display') == "none" ) {
+            $(submissiveClass).slideDown(500);
+        }
+        // If block visible then make invisible with slide up.
+        else {
+            $(submissiveClass).slideUp(500);
+        }
     }
-
-    // Function for top menu buttons.
-
-    slider('#about-btn', '.about');
-    slider('#login-btn', '.login');
+    $('#about-btn').click(function(){
+        slider('.about');
+    });
+    $('#login-btn').click(function(){
+        slider('.login');
+    });
 });
