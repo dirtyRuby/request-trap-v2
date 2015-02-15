@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'traps#index'
+  root 'trap#index'
 
   get 'admin' => 'admin#index'
   post 'admin' => 'sessions#create'

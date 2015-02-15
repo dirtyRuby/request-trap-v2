@@ -59,7 +59,6 @@ class TrapController < ApplicationController
                            request.query_parameters, request.cookies, header)
     end
 
-    WebsocketRails[:channel_name].trigger(:request_captured, trap)
   end
 
   private

@@ -1,5 +1,5 @@
 class Request < ActiveRecord::Base
-  serialize :headers, JSON
+  serialize :headers
   #
   # One-to-many dependency.
   #
