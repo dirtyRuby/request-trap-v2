@@ -1,5 +1,4 @@
 class RequestsController < ApplicationController
-  skip_before_action :authorize
 
   def new
     @request = Request.new

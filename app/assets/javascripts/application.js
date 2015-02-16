@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
 var alreadyDown = false;
 var whoIsAlreadyDown;
 var slider = function(submissiveClass){
@@ -34,11 +35,14 @@ var slider = function(submissiveClass){
     }
 };
 
-$(document).ready(function(){
-    $('#about-btn').click(function(){
+var ready = function(){
+    $('#about-btn').bind('click', function(){
         slider('.about');
     });
-    $('#login-btn').click(function(){
+    $('#login-btn').bind('click', function(){
         slider('.login');
     });
-});
+    $.call(console.log("2"));
+};
+
+$(document).ready(ready);

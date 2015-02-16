@@ -8,7 +8,7 @@ class CreateRequests < ActiveRecord::Migration
       t.string :query_params
       t.string :cookies
       t.binary :headers
-      t.references :trap, index: true
+      t.references :traps, index: true
 
       t.timestamps
     end

@@ -1,2 +1,0 @@
-module TrapHelper
-end
