@@ -1,4 +1,5 @@
 class TrapController < ApplicationController
+  skip_before_filter  :verify_authenticity_token, only: :capture_request
   skip_before_action :authorize, only: :capture_request
   #
   # GET /traps
