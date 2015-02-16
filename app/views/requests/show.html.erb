@@ -1,5 +1,7 @@
+<div class="notice"><%= notice %></div>
 <div class="table-title"><%= @request.trap.name %></div>
-<table class="listing-table">
+<div class="listing-table">
+<table class="">
   <thead>
   <tr>
     <td>Parameter</td>
@@ -11,7 +13,13 @@
       <tr>
         <td><%= value[0].to_s.capitalize.gsub("_", " ") %></td>
         <td>
-          <%= value[1] %>
+          <% if value[1].is_a? Hash %>
+            <% value[1].each_key do |k, v| %>
+              <p><%= k %> | <%= v %></p>
+            <% end %>
+          <% else %>
+            <%= value[1] %>
+          <% end %>
         </td>
       </tr>
   <% end %>
@@ -24,4 +32,5 @@
   <div>
     <%= link_to 'Back', trap_path %>
   </div>
+</div>
 </div>

@@ -75,6 +75,10 @@
 }
 
 #main {
+  width: 50%;
+  margin: auto;
+  position: relative;
+
   .notice {
     position: relative;
     margin: auto;
@@ -82,10 +86,6 @@
     color: #ffffff;
     width: 100%;
   }
-
-  width: 50%;
-  margin: auto;
-  position: relative;
 }
 
 #footer {

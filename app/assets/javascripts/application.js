@@ -14,19 +14,27 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+var alreadyDown = false;
+var whoIsAlreadyDown;
+var slider = function(submissiveClass){
+    // If block invisible then make visible with slide down.
+    if ($(submissiveClass).css('display') == "none") {
+        if (alreadyDown == true) {
+            $(whoIsAlreadyDown).css("display", "none")
+        }
+        $(submissiveClass).slideDown(500);
+        whoIsAlreadyDown = submissiveClass;
+        alreadyDown = true;
 
+    }
+    // If block visible then make invisible with slide up.
+    else {
+        alreadyDown = false;
+        $(submissiveClass).slideUp(500);
+    }
+};
 
 $(document).ready(function(){
-    function slider(submissiveClass){
-        // If block invisible then make visible with slide down.
-        if ($(submissiveClass).css('display') == "none" ) {
-            $(submissiveClass).slideDown(500);
-        }
-        // If block visible then make invisible with slide up.
-        else {
-            $(submissiveClass).slideUp(500);
-        }
-    }
     $('#about-btn').click(function(){
         slider('.about');
     });

@@ -7,4 +7,5 @@ $(document).ready ->
    $(this).addClass('focused')
   tableLine.mouseout ->
    $(this).removeClass('focused')
-  slider('.edit-btn', '.edit-form')
+  $('.edit-btn').click ->
+   slider('.edit-form')
