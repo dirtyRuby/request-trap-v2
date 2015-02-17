@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   #
   def authorize
     unless User.find_by(id: session[:user_id])
-      redirect_to admin_path, notice: "Opps, looks like You're not logged in!"
+      redirect_to admin_url, notice: "Opps, looks like You're not logged in!"
     end
   end
 end

@@ -44,5 +44,5 @@ var ready = function(){
     });
     $.call(console.log("2"));
 };
-
+$(document).ready(ready);
 $(document).on("page:load", ready);
