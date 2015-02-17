@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   include ValidateUserAttributes
 
   validates :user_name, presence: true, uniqueness: true
-  validates_with UserAttributesIputFromat, fields: [:user_name, :password]
+  validates_with UserAttributesInputFromat, fields: [:user_name, :password]
 
   has_secure_password
 

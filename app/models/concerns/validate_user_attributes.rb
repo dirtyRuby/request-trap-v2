@@ -5,14 +5,14 @@ module ValidateUserAttributes
   UPPER_CASE = Regexp.new(/[A-Z]/)
   LOWER_CASE = Regexp.new(/[a-z]/)
 
-  class UserAttributesIputFromat < ActiveModel::Validator
+  class UserAttributesInputFromat < ActiveModel::Validator
     METHOD_LIST = [:upper_case_match, :lower_case_match, :unacceptable_sym_match]
     def validate(record)
       matched = false
       if options[:fields].any? do |field|
         unless record.send(field).nil?
           METHOD_LIST.each do |method|
-            if UserAttributesIputFromat.send(method, record.send(field), record)
+            if UserAttributesInputFromat.send(method, record.send(field), record)
               matched = true
               break
             end

@@ -26,11 +26,11 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-
+    user_name = @user.user_name
     respond_to do |format|
       if @user.save
         if session[:user_id]
-          format.html { redirect_to @user, notice: 'User was successfully created.' }
+          format.html { redirect_to @user, notice: "User #{user_name} was successfully created." }
           format.json { render :show, status: :created, location: @user }
         else
           format.html { redirect_to login_url, notice: "User #{@user.user_name} was successfully created." }
@@ -45,9 +45,10 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    user_name = @user.user_name
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to @user, notice: "User #{user_name} was successfully updated." }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -59,16 +60,17 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    user_name = @user.user_name
     begin
       @user.destroy
     rescue => e
       respond_to do |format|
-        format.html { redirect_to users_url, notice: 'You can not delete the only user.' }
+        format.html { redirect_to users_url, notice: "You can not delete the only user." }
       end
       return
     end
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to users_url, notice: "User #{user_name} was successfully deleted." }
       format.json { head :no_content }
     end
   end
