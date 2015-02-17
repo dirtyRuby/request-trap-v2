@@ -5,14 +5,14 @@ module ValidateUserAttributes
   UPPER_CASE = Regexp.new(/[A-Z]/)
   LOWER_CASE = Regexp.new(/[a-z]/)
 
-  class UserAttributesInputFromat < ActiveModel::Validator
+  class UserAttributesInputFormat < ActiveModel::Validator
     METHOD_LIST = [:upper_case_match, :lower_case_match, :unacceptable_sym_match]
     def validate(record)
       matched = false
       if options[:fields].any? do |field|
         unless record.send(field).nil?
           METHOD_LIST.each do |method|
-            if UserAttributesInputFromat.send(method, record.send(field), record)
+            if UserAttributesInputFormat.send(method, record.send(field), record)
               matched = true
               break
             end
@@ -23,6 +23,7 @@ module ValidateUserAttributes
       end
     end
 
+    private
     def self.upper_case_match(value, record)
       if value.match(UPPER_CASE).nil?
         record.errors[:base] << "User name or password contains must contain at least one upper case letter."
