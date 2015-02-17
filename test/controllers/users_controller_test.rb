@@ -3,7 +3,7 @@ require 'test_helper'
 class UsersControllerTest < ActionController::TestCase
   setup do
     @user = users(:admin)
-    @new_user = {name: "Visitor1"}
+    @new_user = {user_name: "Visitor1"}
     session[:user_id] = @user
   end
 
@@ -37,7 +37,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should update user" do
-    patch :update, id: @user, user: { password: 'secret', password_confirmation: 'secret', user_name: @user.user_name }
+    patch :update, id: @user, user: { password: 'Secret', password_confirmation: 'Secret', user_name: @new_user }
     assert_redirected_to user_path(assigns(:user))
   end
 
