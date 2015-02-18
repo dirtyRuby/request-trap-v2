@@ -15,10 +15,15 @@
 //= require turbolinks
 //= require_tree .
 
+// Define if element is down or not.
 var alreadyDown = false;
+
+// Define what element is already down by selector.
 var whoIsAlreadyDown;
+
+// Slide down or slide up element with specified selector.
+// Hide element that already shown.
 var slider = function(submissiveClass){
-    // If block invisible then make visible with slide down.
     if ($(submissiveClass).css('display') == "none") {
         if (alreadyDown == true) {
             $(whoIsAlreadyDown).css("display", "none")
@@ -26,15 +31,14 @@ var slider = function(submissiveClass){
         $(submissiveClass).slideDown(500);
         whoIsAlreadyDown = submissiveClass;
         alreadyDown = true;
-
     }
-    // If block visible then make invisible with slide up.
     else {
         alreadyDown = false;
         $(submissiveClass).slideUp(500);
     }
 };
 
+// What to execute when document is ready page loaded.
 var ready = function(){
     $('#about-btn').bind('click', function(){
         slider('.about');
@@ -44,5 +48,6 @@ var ready = function(){
     });
     $.call(console.log("2"));
 };
+
 $(document).ready(ready);
 $(document).on("page:load", ready);

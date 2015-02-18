@@ -58,6 +58,7 @@ class TrapsController < ApplicationController
       end
       req = create_request(trap, request.remote_ip, request.method, request.scheme, request.query_string,
                            request.query_parameters, request.cookies, header)
+      render nothing: true, status: 200
     end
 
   end
