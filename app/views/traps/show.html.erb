@@ -1,27 +1,4 @@
-<span class="table-title "><%= @trap.name %></span>
-<table class="listing-table">
-  <thead>
-  <tr>
-    <td>#</td>
-    <td>Created at</td>
-    <td>Remote ip</td>
-    <td>Request method</td>
-    <td></td>
-  </tr>
-  </thead>
-  <tbody>
-  <% @requests.each_with_index do |request, index| %>
-      <tr>
-        <td><%= index + 1%></td>
-        <td><%= request.created_at.strftime("%F %T") %></td>
-        <td><%= request.remote_ip %></td>
-        <td><%= request.request_method %></td>
-        <td><%= link_to 'Details', requests_path(@trap.name, request) %></td>
-      </tr>
-  <% end %>
-  <td class="manipulation-bar"></td>
-  </tbody>
-</table>
+<h1 class="table-title "><%= @trap.name %></h1>
 <div class="listing-manipulation">
   <div>
     <%= link_to 'Delete', trap_path(@trap.name), method: :delete %>
@@ -39,4 +16,29 @@
       <p><%= f.text_field :name %></p>
       <p><%= f.submit 'Rename' %></p>
   <% end %>
+</div>
+<div class="container">
+    <table class="listing-table">
+      <thead>
+      <tr>
+        <td>#</td>
+        <td>Created at</td>
+        <td>Remote ip</td>
+        <td>Request method</td>
+        <td></td>
+      </tr>
+      </thead>
+      <tbody>
+      <% @requests.each_with_index do |request, index| %>
+          <tr>
+            <td><%= index + 1%></td>
+            <td><%= request.created_at.strftime("%F %T") %></td>
+            <td><%= request.remote_ip %></td>
+            <td><%= request.request_method %></td>
+            <td><%= link_to 'Details', requests_path(@trap.name, request) %></td>
+          </tr>
+      <% end %>
+      <td class="manipulation-bar"></td>
+      </tbody>
+    </table>
 </div>

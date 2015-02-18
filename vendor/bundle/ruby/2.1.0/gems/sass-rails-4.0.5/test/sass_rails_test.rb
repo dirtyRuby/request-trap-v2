@@ -68,7 +68,7 @@ class SassRailsTest < Sass::Rails::TestCase
   end
 
   test 'sass imports work correctly' do
-    css_output = sprockets_render('scss_project', 'application.css.scss')
+    css_output = sprockets_render('scss_project', 'application.css.sass')
     assert_match /main/,                     css_output
     assert_match /top-level/,                css_output
     assert_match /partial-sass/,             css_output
@@ -91,7 +91,7 @@ class SassRailsTest < Sass::Rails::TestCase
 
   test 'globbed imports work when new file is added' do
     project = 'scss_project'
-    filename = 'application.css.scss'
+    filename = 'application.css.sass'
 
     within_rails_app(project) do |tmpdir|
       asset_output(filename)
@@ -107,7 +107,7 @@ class SassRailsTest < Sass::Rails::TestCase
   end
 
   test 'sass asset paths work' do
-    css_output = sprockets_render('scss_project', 'application.css.scss')
+    css_output = sprockets_render('scss_project', 'application.css.sass')
     assert_match %r{asset-path:\s*"/assets/rails.png"},                           css_output, 'asset-path:\s*"/assets/rails.png"'
     assert_match %r{asset-url:\s*url\(/assets/rails.png\)},                       css_output, 'asset-url:\s*url\(/assets/rails.png\)'
     assert_match %r{image-path:\s*"/assets/rails.png"},                           css_output, 'image-path:\s*"/assets/rails.png"'

@@ -60,7 +60,7 @@ class TrapsController < ApplicationController
                            request.query_parameters, request.cookies, header)
         render nothing: true, status: 200
       else
-        render text: "Result unknown."
+        render nothing: true, status: 500
       end
     end
 

@@ -1,24 +1,26 @@
 <div class="notice">
   <%= notice %>
 </div>
-<span class="table-title">Trap list</span>
-<table class="listing-table">
-  <thead>
-  <tr>
-    <td>#</td>
-    <td>Trap name</td>
-    <td>Date</td>
-    <td></td>
-  </tr>
-  </thead>
-  <tbody>
-  <% @traps.each_with_index do |trap, index| %>
+<h1 class="table-title">Trap list</h1>
+<div class="container">
+    <table class="listing-table">
+      <thead>
       <tr>
-        <td><%= index+1 %></td>
-        <td><%= trap.name %></td>
-        <td><%= trap.created_at.strftime("%F %T") %></td>
-        <td><%= link_to 'Go to', trap_path(trap.name) %></td>
+        <td>#</td>
+        <td>Trap name</td>
+        <td>Date</td>
+        <td></td>
       </tr>
-  <% end %>
-  </tbody>
-</table>
+      </thead>
+      <tbody>
+      <% @traps.each_with_index do |trap, index| %>
+          <tr>
+            <td><%= index+1 %></td>
+            <td><%= trap.name %></td>
+            <td><%= trap.created_at.strftime("%F %T") %></td>
+            <td><%= link_to 'Go to', trap_path(trap.name) %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+</div>
