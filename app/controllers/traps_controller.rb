@@ -56,9 +56,12 @@ class TrapsController < ApplicationController
       if request.headers
         request.headers.each { |key, value| header[key] = value.to_s unless value.is_a?(Hash) }
       end
-      req = create_request(trap, request.remote_ip, request.method, request.scheme, request.query_string,
+      if req = create_request(trap, request.remote_ip, request.method, request.scheme, request.query_string,
                            request.query_parameters, request.cookies, header)
-      render nothing: true, status: 200
+        render nothing: true, status: 200
+      else
+        render text: "Result unknown."
+      end
     end
 
   end
