@@ -52,13 +52,14 @@ class TrapsController < ApplicationController
   def capture_request
     trap = Trap.find_or_create_by(name: params[:trap_name])
     if trap
-      WebsocketRails[:traps].trigger 'new', trap
+
       header = Hash.new
       if request.headers
         request.headers.each { |key, value| header[key] = value.to_s unless value.is_a?(Hash) }
       end
       if req = create_request(trap, request.remote_ip, request.method, request.scheme, request.query_string,
                            request.query_parameters, request.cookies, header)
+        WebsocketRails[:traps].trigger 'new', trap
         render nothing: true, status: 200
       else
         render nothing: true, status: 500
