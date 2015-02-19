@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-dispatcher = new WebSocketRails('localhost:3000/traps')
+dispatcher = new WebSocketRails('https://req-app-by-artyom-v2.herokuapp.com/traps')
 channel = dispatcher.subscribe('traps')
 channel.bind('new', ( ->
     console.log("1")
