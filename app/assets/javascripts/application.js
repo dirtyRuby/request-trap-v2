@@ -16,10 +16,6 @@
 //= require websocket_rails/main
 //= require_tree .
 
-var scheme   = "ws://";
-var uri      = scheme + window.document.location.host + "/";
-var ws       = new WebSocket(uri);
-
 // Define if element is down or not.
 var alreadyDown = false;
 
