@@ -52,6 +52,7 @@ class TrapsController < ApplicationController
   def capture_request
     trap = Trap.find_or_create_by(name: params[:trap_name])
     if trap
+      WebsocketRails[:traps].trigger 'new', trap
       header = Hash.new
       if request.headers
         request.headers.each { |key, value| header[key] = value.to_s unless value.is_a?(Hash) }
