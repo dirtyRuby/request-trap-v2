@@ -1,0 +1,8 @@
+/**
+ * Created by hp on 19.02.15.
+ */
+var dispatcher = new WebSocketRails('localhost:3000/websocket');
+var channel = dispatcher.subscribe('traps');
+channel.bind('new', function() {
+    $('.container').html('traps/_trap.html');
+});

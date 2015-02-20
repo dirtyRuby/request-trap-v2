@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require websocket_rails/main
+//= require angular
 //= require_tree .
 
 // Define if element is down or not.

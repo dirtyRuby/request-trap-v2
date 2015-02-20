@@ -1,0 +1,7 @@
+<tr>
+  <td><%= %></td>
+  <td><%= @req.created_at.strftime("%F %T") %></td>
+  <td><%= @req.remote_ip %></td>
+  <td><%= @req.request_method %></td>
+  <td><%= link_to 'Details', requests_path(@trap.name, @req) %></td>
+</tr>

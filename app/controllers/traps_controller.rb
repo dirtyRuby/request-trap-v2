@@ -6,6 +6,10 @@ class TrapsController < ApplicationController
   #
   def index
     @traps = Trap.all.order(created_at: :desc)
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
   #
   # List all requests captured by certain traps action.
@@ -50,22 +54,18 @@ class TrapsController < ApplicationController
   # Capture traps/request and save to database action.
   #
   def capture_request
-    trap = Trap.find_or_create_by(name: params[:trap_name])
-    if trap
+    already_exist = false
+    already_exist = true if Trap.find_by(name: params[:trap_name])
+    @trap = Trap.find_or_create_by(name: params[:trap_name])
+    header = Hash.new
+    request.headers.each { |key, value| header[key] = value.to_s unless value.is_a?(Hash) }
+    @req = create_request(@trap, request.remote_ip, request.method, request.scheme, request.query_string,
+                         request.query_parameters, request.cookies, header)
 
-      header = Hash.new
-      if request.headers
-        request.headers.each { |key, value| header[key] = value.to_s unless value.is_a?(Hash) }
-      end
-      if req = create_request(trap, request.remote_ip, request.method, request.scheme, request.query_string,
-                           request.query_parameters, request.cookies, header)
-        WebsocketRails[:traps].trigger 'new', trap
-        render nothing: true, status: 200
-      else
-        render nothing: true, status: 500
-      end
+    if @trap
+      WebsocketRails[:trap].trigger 'new', render(partial: 'traps/trap') unless already_exist
+      WebsocketRails[:request].trigger 'new', render(partial: 'traps/request') if @req
     end
-
   end
 
   private

@@ -19,7 +19,7 @@ class TemplateHandlerTest < ActiveSupport::TestCase
   end
 
   test "coffee views are served as javascript" do
-    get "/site/index.js"
+    get "/site/index.js.erb"
 
     assert_match "alert('hello world');\n", last_response.body
   end
