@@ -2,19 +2,22 @@
 
 one:
   id: 1
-  remote_ip: MyString
-  request_method: MyString
-  scheme: MyString
-  query_string: MyString
-  query_params: MyString
-  cookies: MyString
+  remote_ip: Ip1
+  request_method: Method1
+  scheme: Scheme1
+  query_string: QueryString1
+  query_params: '[{}]'
+  cookies: '[{}]'
+  headers: '[{}]'
   trap_id: 1
 
 two:
-  remote_ip: MyString
-  request_method: MyString
-  scheme: MyString
-  query_string: MyString
-  query_params: MyString
-  cookies: MyString
-  headers: MyString
+  id: 2
+  remote_ip: Ip2
+  request_method: Method2
+  scheme: Scheme2
+  query_string: QueryString2
+  query_params: '[{}]'
+  cookies: '[{}]'
+  headers: '[{}]'
+  trap_id: 2

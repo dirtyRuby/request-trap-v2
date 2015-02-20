@@ -1,27 +1,31 @@
 <div class="notice"><%= notice %></div>
 <h1>Listing users</h1>
-<table class="listing-table">
-  <thead>
-  <tr>
-    <td>User name</td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  </thead>
-  <tbody>
-  <% @users.each do |user| %>
-      <tr>
-        <td><%= user.user_name %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
-<div class="listing-manipulation">
-  <div>
-    <%= link_to 'New User', new_user_path %>
+<div class="container">
+  <table class="listing-table">
+    <thead>
+    <tr>
+      <td>#</td>
+      <td>User name</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    </thead>
+    <tbody>
+    <% @users.each_with_index do |user, index| %>
+        <tr>
+          <td><%= index+1 %></td>
+          <td><%= user.user_name %></td>
+          <td><%= link_to 'Show', user %></td>
+          <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <div class="listing-manipulation">
+    <div>
+      <%= link_to 'New User', new_user_path %>
+    </div>
   </div>
 </div>

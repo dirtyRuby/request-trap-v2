@@ -33,10 +33,12 @@ class TrapsController < ApplicationController
   # PATCH/PUT /traps/:trap_name/requests
   #
   def update
+    @trap = Trap.find_by_name(params[:trap_name])
     respond_to do |format|
-      if Trap.find_by(id: params[:trap_name]).update(trap_params)
-        flash[:new_trap_name] = trap_params.name
-        format.html{redirect_to trap_path, notice: "Trap  was successfully renamed."}
+      if @trap.update(trap_params)
+        format.html { redirect_to trap_path(@trap), notice: 'Trap was successfully renamed.' }
+      else
+        format.html { redirect_to trap_path(@trap), notice: 'Trap wasn\'t updated' }
       end
     end
   end
@@ -62,15 +64,20 @@ class TrapsController < ApplicationController
     @req = create_request(@trap, request.remote_ip, request.method, request.scheme, request.query_string,
                          request.query_parameters, request.cookies, header)
 
-    if @trap
-      WebsocketRails[:trap].trigger 'new', render(partial: 'traps/trap') unless already_exist
-      WebsocketRails[:request].trigger 'new', render(partial: 'traps/request') if @req
+    respond_to do |format|
+      if @trap
+        WebsocketRails[:trap].trigger 'new', render_to_string(partial: 'traps/trap') unless already_exist
+        WebsocketRails[:request].trigger 'new', render_to_string(partial: 'traps/request') if @req
+        format.html { redirect_to traps_path, notice: 'Request was successfully captured.'}
+      else
+        format.html { redirect_to traps_path, notice: 'Request wasn\'t captured.'}
+      end
     end
   end
 
   private
   def trap_params
-    params.require(:traps).permit(:name)
+    params.require(:trap).permit(:name)
   end
 
   def create_request (trap, remote_ip, request_method, scheme, query_string, query_params, cookies, headers=nil)

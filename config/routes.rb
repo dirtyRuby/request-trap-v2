@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     match 'traps/:trap_name/requests' => :show, as: :trap, via: :get
     delete 'traps/:trap_name/:id' => :destroy
     patch 'traps/:trap_name/requests' => :update
+    put 'traps/:trap_name/requests' => :update
   end
 
   controller :requests do

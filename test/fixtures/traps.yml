@@ -2,7 +2,8 @@
 
 one:
   id: 1
-  name: MyTrap
+  name: MyTrap1
 
 two:
-  name: MyString
+  id: 2
+  name: MyTrap2

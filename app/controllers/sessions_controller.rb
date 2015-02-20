@@ -5,7 +5,8 @@ class SessionsController < ApplicationController
   # GET /login
   #
   def new
-    if session[:user_id] && user = User.find_by(id: session[:user_id])
+    user = User.find_by(id: session[:user_id])
+    if session[:user_id] && user
       redirect_to admin_url, notice: "User #{user.user_name} already logged in."
     end
   end
