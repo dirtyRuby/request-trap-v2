@@ -20,4 +20,10 @@ class RequestsControllerTest < ActionController::TestCase
     assert_redirected_to trap_path(trap_name: @my_trap.name)
   end
 
+  test "should not access any action without authorization" do
+    session[:user_id] = nil
+    authorization_required :get, :show, id: @my_request, trap_name: @my_trap.name
+    authorization_required :delete, :destroy, id:@my_request, trap_name: @my_trap.name
+  end
+
 end
