@@ -24,8 +24,8 @@ class TrapsControllerTest < ActionController::TestCase
   end
 
   test "should update trap" do
-    patch :update, trap_name: @my_trap2.name, trap: {name: 'New name'}
-    assert_redirected_to trap_path(assigns(:trap))
+    patch :update, trap_name: @my_trap2, trap: {name: 'New name'}
+    assert_redirected_to trap_path(trap_name: 'New name')
   end
 
   test "should capture GET request" do

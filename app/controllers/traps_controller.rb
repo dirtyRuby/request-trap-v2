@@ -21,7 +21,9 @@ class TrapsController < ApplicationController
   # GET /traps/:trap_name/requests
   #
   def show
-    if @trap = Trap.find_by_name(params[:trap_name]) || Trap.find_by_name(flash[:new_trap_name])
+    name = flash[:new_trap_name]
+    @trap = Trap.find_by("name = ?", params[:trap_name]) || Trap.find_by("name = ?", name )
+    if @trap
       @requests = @trap.requests.order(created_at: :desc)
     else
       respond_to do |format|
@@ -33,12 +35,13 @@ class TrapsController < ApplicationController
   # PATCH/PUT /traps/:trap_name/requests
   #
   def update
-    @trap = Trap.find_by_name(params[:trap_name])
+    @trap = Trap.find_by("id = ?", params[:trap_name])
+    current_trap_name = @trap.name
     respond_to do |format|
       if @trap.update(trap_params)
-        format.html { redirect_to trap_path(@trap), notice: 'Trap was successfully renamed.' }
+        format.html { redirect_to trap_path(@trap.name), notice: "Trap #{current_trap_name} was successfully updated.", flash: {new_trap_name: trap_params} }
       else
-        format.html { redirect_to trap_path(@trap), notice: 'Trap wasn\'t updated' }
+        format.html { redirect_to trap_path(@trap.name), notice: 'Trap wasn\'t updated' }
       end
     end
   end
