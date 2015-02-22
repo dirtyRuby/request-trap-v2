@@ -6,13 +6,13 @@ dispatcher = new WebSocketRails('localhost:3000/websocket')
 trap_channel = dispatcher.subscribe('trap')
 request_channel = dispatcher.subscribe('request')
 trap_channel.bind('new', ((trap) ->
-    $('.listing-table tbody tr:first').before(trap)
-    alert(1)
+  $('.trap-list tbody tr:first').before(trap)
+  rewriteNumeration('.listing-table tbody')
   )
 )
 request_channel.bind('new', ((request) ->
-    $('.listing-table tbody tr:first').before(request)
-    alert(2)
+  $('.request-list tbody tr:first').before(request)
+  rewriteNumeration('.listing-table tbody')
   )
 )
 

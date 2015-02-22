@@ -40,6 +40,18 @@ var slider = function(submissiveClass){
     }
 };
 
+
+// Rewrites table numeration after new record was added.
+function rewriteNumeration(selector){
+   var tableBody = document.querySelector(selector);
+   var rowsLength = tableBody.rows.length;
+   for(var i=1; i<rowsLength; i++) {
+     var cell = tableBody.rows[i].cells[0];
+     var cellValue = parseInt(cell.innerText, 10);
+     cell.innerText = cellValue+1;
+   }
+}
+
 // What to execute when document is ready page loaded.
 var ready = function(){
     $('#about-btn').bind('click', function(){

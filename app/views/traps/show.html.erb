@@ -19,7 +19,7 @@
   <% end %>
 </div>
 <div class="container">
-    <table class="listing-table">
+    <table class="request-list listing-table">
       <thead>
       <tr>
         <td>#</td>
@@ -32,14 +32,13 @@
       <tbody>
       <% @requests.each_with_index do |request, index| %>
           <tr>
-            <td><%= index + 1%></td>
+            <td><%= index + 1 %></td>
             <td><%= request.created_at.strftime("%F %T") %></td>
             <td><%= request.remote_ip %></td>
             <td><%= request.request_method %></td>
             <td><%= link_to 'Details', requests_path(@trap.name, request) %></td>
           </tr>
       <% end %>
-      <td class="manipulation-bar"></td>
       </tbody>
     </table>
 </div>

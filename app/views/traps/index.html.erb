@@ -3,7 +3,7 @@
 </div>
 <h1 class="table-title">Trap list</h1>
 <div class="container">
-  <table class="listing-table">
+  <table class="trap-list listing-table">
     <thead>
     <tr>
       <td>#</td>
@@ -19,7 +19,7 @@
         <td><%= trap.name %></td>
         <td><%= trap.created_at.strftime("%F %T") %></td>
         <td><%= link_to 'Go to', trap_path(trap.name) %></td>
-       </tr>
+      </tr>
     <% end %>
     </tbody>
   </table>

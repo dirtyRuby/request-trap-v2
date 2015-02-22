@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150218232832) do
+ActiveRecord::Schema.define(version: 20150221204856) do
 
   create_table "requests", force: true do |t|
     t.string   "remote_ip"
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 20150218232832) do
     t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "confirmed",       default: false
+    t.string   "email"
   end
 
 end
