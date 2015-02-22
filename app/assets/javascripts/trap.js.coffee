@@ -1,8 +1,9 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
-
-dispatcher = new WebSocketRails('req-app-by-artyom-v2.herokuapp.com:8443')
+scheme = 'wss://'
+uri = scheme + window.document.location.host + '/'
+dispatcher = new WebSocketRails(uri)
 trap_channel = dispatcher.subscribe('trap')
 request_channel = dispatcher.subscribe('request')
 trap_channel.bind('new', ((trap) ->
