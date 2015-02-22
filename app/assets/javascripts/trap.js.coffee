@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 scheme = 'wss://'
-uri = scheme + window.document.location.host+'websocket'
+uri = scheme + window.document.location.host+'/websocket'
 dispatcher = new WebSocketRails(uri)
 trap_channel = dispatcher.subscribe('trap')
 request_channel = dispatcher.subscribe('request')
