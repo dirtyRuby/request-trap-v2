@@ -33,7 +33,7 @@ class SessionsController < ApplicationController
 
   private
   #
-  # Create new user if there ara no users.
+  # Create new user if there ara no users in data base.
   #
   def first_user
     if User.count.zero?
