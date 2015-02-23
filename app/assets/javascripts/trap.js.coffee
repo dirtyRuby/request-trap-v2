@@ -4,7 +4,7 @@
 
 # Set connection to websocket.
 # Prepend to tBody new request or trap record.
-scheme = 'ws://'
+scheme = 'wss://'
 uri = scheme + window.document.location.host+'/websocket'
 dispatcher = new WebSocketRails(uri)
 trap_channel = dispatcher.subscribe('trap')
