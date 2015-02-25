@@ -1,5 +1,4 @@
 class TrapsController < ApplicationController
-  skip_before_filter  :verify_authenticity_token, only: :capture_request
   skip_before_action :authorize, only: :capture_request
   #
   # GET /traps
@@ -8,17 +7,10 @@ class TrapsController < ApplicationController
     @traps = Trap.all.order(created_at: :desc)
     respond_to do |format|
       format.html
-      format.js
     end
   end
   #
-  # List all requests captured by certain traps action.
-  #
-  def new
-    @trap = Trap.new
-  end
-  #
-  # GET /traps/:trap_name/requests
+  # GET /traps/trap_name/requests
   #
   def show
     name = flash[:new_trap_name]
@@ -32,7 +24,7 @@ class TrapsController < ApplicationController
     end
   end
   #
-  # PATCH/PUT /traps/:trap_name/requests
+  # PATCH/PUT /traps/trap_name/requests
   #
   def update
     @trap = Trap.find_by("id = ?", params[:trap_name])
@@ -40,13 +32,15 @@ class TrapsController < ApplicationController
     respond_to do |format|
       if @trap.update(trap_params)
         format.html { redirect_to trap_path(@trap.name), notice: "Trap #{current_trap_name} was successfully updated.", flash: {new_trap_name: trap_params} }
+        format.json { render :show, status: :ok, location: @trap }
       else
         format.html { redirect_to trap_path(@trap.name), notice: 'Trap wasn\'t updated' }
+        format.json { render json: @trap.errors, status: :unprocessable_entity }
       end
     end
   end
   #
-  # DELETE /traps/:trap_name/:id
+  # DELETE /traps/trap_name/1
   #
   def destroy
     Trap.find_by(name: params[:trap_name]).destroy

@@ -63,5 +63,5 @@ var ready = function(){
 };
 
 $(document).ready(ready);
-$(document).on("page:load", ready);//= require websocket_rails/main
+$(document).on("page:load", ready);
 
